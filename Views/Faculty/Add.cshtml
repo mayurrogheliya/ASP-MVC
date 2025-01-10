@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Faculties";
+}
+
+@model UnderstandingMVC.Models.FacultyViewModel;
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Faculty Form</h3>
+    <a class="btn btn-primary" asp-controller="Faculty" asp-action="List">View</a>
+</div>
+    <form method="post" class="row g-3">
+        <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" asp-for="Name">
+        </div>
+        <div class="col-md-6">
+            <label for="phone" class="form-label">Mobile No.</label>
+            <input type="number" class="form-control" id="phone" placeholder="Enter your mobile no." asp-for="Phone">
+        </div>
+        <div class="col-md-4">
+            <label for="branch" class="form-label">Branch</label>
+            <input type="text" class="form-control" id="branch" placeholder="Enter your branch name" asp-for="Branch">
+        </div>
+        <div class="col-md-4">
+            <label for="sub1" class="form-label">Subject 1</label>
+            <input type="text" class="form-control" id="sub1" placeholder="Enter your first subject" asp-for="SubjectF">
+        </div>
+        <div class="col-md-4">
+            <label for="sub2" class="form-label">Subject 2</label>
+            <input type="text" class="form-control" id="sub2" placeholder="Enter your second subject" asp-for="SubjectS">
+        </div>
+        <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Enter your address" asp-for="Address">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
