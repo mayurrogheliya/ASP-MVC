@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Faculties";
+}
+
+@model List<UnderstandingMVC.Models.Entities.Faculty>
+
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Faculty Details</h3>
+    <a class="btn btn-primary" asp-controller="Faculty" asp-action="Add">Add</a>
+</div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mobile No.</th>
+                    <th scope="col">Branch</th>
+                    <th scope="col">Subject-1</th>
+                    <th scope="col">Subject-2</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model!=null && Model.Count>0)
+                {
+                    @foreach (var faculty in Model)
+                    {
+                <tr>
+                    <td>@faculty.Name</td>
+                    <td>@faculty.Phone</td>
+                    <td>@faculty.Branch</td>
+                    <td>@faculty.SubjectF</td>
+                    <td>@faculty.SubjectS</td>
+                    <td>@faculty.Address</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm mb-2 mb-md-0">Edit</button>
+                            <form asp-action="Delete" asp-controller="Faculty" asp-route-id="@faculty.Id" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                    </td>
+                </tr>
+                    }
+                }
+                else
+                {
+                   <tr>
+                       <td colspan="7" class="text-center text-muted">
+                           No faculty data available.
+                       </td>
+                   </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
