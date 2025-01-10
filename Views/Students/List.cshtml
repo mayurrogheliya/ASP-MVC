@@ -7,10 +7,10 @@
 
 @model List<UnderstandingMVC.Models.Entities.Student>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Student Details</h3>
     <a class="btn btn-primary" asp-controller="Students" asp-action="Add">Add</a>
-    </div>
+</div>
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>
@@ -25,21 +25,32 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var student in Model)
+            @if(Model!=null && Model.Count>0)
+            {
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Name</td>
+                        <td>@student.Phone</td>
+                        <td>@student.Branch</td>
+                        <td>@student.Semester</td>
+                        <td>@student.Result</td>
+                        <td>@student.Address</td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Students" asp-route-id="@student.Id" class="btn btn-primary btn-sm mb-2 mb-sm-0">Edit</a>
+                            <form asp-action="Delete" asp-controller="Students" method="post" style="display:inline;">
+                                <input type="hidden" name="Id" value="@student.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@student.Name</td>
-                    <td>@student.Phone</td>
-                    <td>@student.Branch</td>
-                    <td>@student.Semester</td>
-                    <td>@student.Result</td>
-                    <td>@student.Address</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm mb-2 mb-sm-0">Edit</button>
-                        <form asp-action="Delete" asp-controller="Students" method="post" style="display:inline;">
-                            <input type="hidden" name="Id" value="@student.Id" />
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                    <td colspan="7" class="text-center text-muted">
+                    No student data available.
                     </td>
                 </tr>
             }

@@ -58,5 +58,48 @@ namespace UnderstandingMVC.Controllers
             }
             return RedirectToAction("List", "Students");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var student = await dBContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+            if(student == null)
+            {
+                return RedirectToAction("List", "Students");
+            }
+            var data = new AddStudentViewModel
+            {
+                Name = student.Name,
+                Phone = student.Phone,
+                Address = student.Address,
+                Branch = student.Branch,
+                Result = student.Result,
+                Semester = student.Semester
+            };
+
+            ViewBag.StudentId = student.Id;
+            return View("Add",data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Guid id,AddStudentViewModel data)
+        {
+            var student = await dBContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+            if(student!=null)
+            {
+                student.Name = data.Name;
+                student.Phone = data.Phone;
+                student.Branch = data.Branch;
+                student.Semester = data.Semester;
+                student.Result = data.Result;
+                student.Address = data.Address;
+
+                dBContext.Students.Update(student);
+                await dBContext.SaveChangesAsync();
+
+                return RedirectToAction("List", "Students");
+            }
+            return RedirectToAction("List", "Students");
+        }
     }
 }

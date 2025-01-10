@@ -11,7 +11,7 @@
     <h3>Student Form</h3>
     <a class="btn btn-primary" asp-controller="Students" asp-action="List">View</a>
 </div>
-<form  method="post" class="row g-3">
+<form  method="post" asp-action="@(ViewBag.StudentId!=null?"Edit":"Add")" asp-route-id="@(ViewBag.StudentId)" class="row g-3">
     <div class="col-md-6">
         <label for="name" class="form-label">Name</label>
         <input type="text" class="form-control" id="name" placeholder="Enter your name" asp-for="Name">
@@ -37,6 +37,6 @@
         <input type="text" class="form-control" id="address" placeholder="Enter your address" asp-for="Address">
     </div>
     <div class="col-12">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </form>
