@@ -12,8 +12,8 @@ using UnderstandingMVC.Data;
 namespace UnderstandingMVC.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20250107134203_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20250110045849_Student Migration")]
+    partial class StudentMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
